@@ -1,0 +1,68 @@
+# ── UiPath Studio machine-/cache-specific ──────────────────────────────
+**/.local/**
+**/.settings/**
+**/.objects/**
+**/.tmh/**
+**/.screenshots/**
+
+# Logs
+**/*.log
+
+# ── Common IDE / OS noise (optional but nice) ──────────────────────────
+
+# VS Code / Rider / JetBrains etc
+.vscode/
+.idea/
+*.suo
+*.user
+*.userossc
+*.sln.docstates
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.nfs*
+
+# ── If you use Python/.NET/etc inside your project ─────────────────────
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.env
+.env
+.venv/
+venv/
+
+# .NET
+bin/
+obj/
+*.user
+*.rsuser
+
+# Node (if you have any JS tooling)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-lock.yaml
+
+################################################################################
+# Added by UiPath Studio
+# Prevent caching and local artifacts from being committed
+################################################################################
+.local
+################################################################################
+# End of UiPath Studio common ignores
+################################################################################
