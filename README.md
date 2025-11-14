@@ -136,6 +136,26 @@ rpa-job-search-process/
 For detailed documentation about the automation process, design decisions, and analysis,
 see [documentation](documentation.md).
 
+## Visual Preview
+
+### Generated CSV Output
+
+The automation generates a CSV file containing all extracted job listings with structured data:
+
+![CSV Data Preview](assets/csv-data-preview.png)
+
+### Email Sent from Gmail
+
+The automation sends an email via Gmail with the job listings CSV file attached:
+
+![Gmail Send Preview](assets/gmail-send-preview.png)
+
+### Email Received in Outlook
+
+The recipient receives the email with the attached CSV file containing all job listings:
+
+![Outlook Receive Preview](assets/outlook-receive-preview.png)
+
 ## License
 
 This project is created for educational purposes as part of an RPA course assignment.
