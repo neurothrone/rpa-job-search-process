@@ -139,6 +139,7 @@
         <Variable x:TypeArguments="x:Int32" Name="jobsCount" />
         <Variable x:TypeArguments="sd:DataTable" Name="jobsTable" />
         <Variable x:TypeArguments="x:String" Name="jobsAsCsvText" />
+        <Variable x:TypeArguments="sd:DataTable" Name="cleanedJobsTable" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -190,16 +191,17 @@
       </ui:InvokeWorkflowFile>
       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="CleanJobsTableWorkflow - Invoke Workflow File (CleanJobsTableWorkflow.xaml)" sap:VirtualizedContainerService.HintSize="556,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="CleanJobsTableWorkflow.xaml">
         <ui:InvokeWorkflowFile.Arguments>
+          <OutArgument x:TypeArguments="sd:DataTable" x:Key="outCleanedJobsTable">[cleanedJobsTable]</OutArgument>
           <InArgument x:TypeArguments="sd:DataTable" x:Key="inJobsTable">[jobsTable]</InArgument>
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
-      <ui:OutputDataTable DataTable="[jobsTable]" DisplayName="Output Data Table as Text" sap:VirtualizedContainerService.HintSize="556,113" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[jobsAsCsvText]" />
+      <ui:OutputDataTable DataTable="[cleanedJobsTable]" DisplayName="Output Data Table as Text" sap:VirtualizedContainerService.HintSize="556,113" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[jobsAsCsvText]" />
       <Assign sap2010:Annotation.AnnotationText="This does not include the header row." sap:VirtualizedContainerService.HintSize="556,206" sap2010:WorkflowViewState.IdRef="Assign_1">
         <Assign.To>
           <OutArgument x:TypeArguments="x:Int32">[jobsCount]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:Int32">[jobsTable.Rows.Count]</InArgument>
+          <InArgument x:TypeArguments="x:Int32">[cleanedJobsTable.Rows.Count]</InArgument>
         </Assign.Value>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
