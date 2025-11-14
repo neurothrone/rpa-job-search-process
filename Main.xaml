@@ -123,13 +123,13 @@
       <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="643,2337" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="643,2558" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="MainSequence" sap:VirtualizedContainerService.HintSize="520,2314" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence DisplayName="MainSequence" sap:VirtualizedContainerService.HintSize="590,2630" sap2010:WorkflowViewState.IdRef="Sequence_5">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="configOutputFilePath" />
         <Variable x:TypeArguments="x:String" Name="configQueryLink" />
@@ -145,7 +145,7 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="486,599" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="556,599" sap2010:WorkflowViewState.IdRef="TryCatch_1">
         <TryCatch.Try>
           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke ReadJsonConfigWorkflow " sap:VirtualizedContainerService.HintSize="450,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Workflows\ReadJsonConfigWorkflow.xaml">
             <ui:InvokeWorkflowFile.Arguments>
@@ -182,14 +182,19 @@
           </Sequence>
         </TryCatch.Finally>
       </TryCatch>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke WebscrapeJobsWorkflow" sap:VirtualizedContainerService.HintSize="486,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Workflows\WebscrapeJobsWorkflow.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke WebscrapeJobsWorkflow" sap:VirtualizedContainerService.HintSize="556,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Workflows\WebscrapeJobsWorkflow.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <InArgument x:TypeArguments="x:String" x:Key="inQueryLink">[configQueryLink]</InArgument>
           <OutArgument x:TypeArguments="sd:DataTable" x:Key="outJobsTable">[jobsTable]</OutArgument>
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
-      <ui:OutputDataTable DataTable="[jobsTable]" DisplayName="Output Data Table as Text" sap:VirtualizedContainerService.HintSize="486,113" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[jobsAsCsvText]" />
-      <Assign sap2010:Annotation.AnnotationText="This does not include the header row." sap:VirtualizedContainerService.HintSize="486,206" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="CleanJobsTableWorkflow - Invoke Workflow File (CleanJobsTableWorkflow.xaml)" sap:VirtualizedContainerService.HintSize="556,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="CleanJobsTableWorkflow.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="sd:DataTable" x:Key="inJobsTable">[jobsTable]</InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <ui:OutputDataTable DataTable="[jobsTable]" DisplayName="Output Data Table as Text" sap:VirtualizedContainerService.HintSize="556,113" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[jobsAsCsvText]" />
+      <Assign sap2010:Annotation.AnnotationText="This does not include the header row." sap:VirtualizedContainerService.HintSize="556,206" sap2010:WorkflowViewState.IdRef="Assign_1">
         <Assign.To>
           <OutArgument x:TypeArguments="x:Int32">[jobsCount]</OutArgument>
         </Assign.To>
@@ -202,16 +207,16 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </Assign>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Inzane Bot: Found &quot; + jobsCount.ToString + &quot; jobs.&quot;]" />
-      <If Condition="[jobsCount &gt; 0 AndAlso  Not String.IsNullOrEmpty(jobsAsCsvText)]" sap:VirtualizedContainerService.HintSize="486,961" sap2010:WorkflowViewState.IdRef="If_1">
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="556,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Inzane Bot: Found &quot; + jobsCount.ToString + &quot; jobs.&quot;]" />
+      <If Condition="[jobsCount &gt; 0 AndAlso  Not String.IsNullOrEmpty(jobsAsCsvText)]" sap:VirtualizedContainerService.HintSize="556,1123" sap2010:WorkflowViewState.IdRef="If_1">
         <If.Then>
-          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484,662" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="554,824" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Sequence DisplayName="WriteJobsToFileAndSendAsEmail" sap:VirtualizedContainerService.HintSize="450,602" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <Sequence DisplayName="WriteJobsToFileAndSendAsEmail" sap:VirtualizedContainerService.HintSize="520,764" sap2010:WorkflowViewState.IdRef="Sequence_2">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:String" Name="fullOutputFilePathName" />
               </Sequence.Variables>
@@ -220,7 +225,7 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Assign sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_2">
+              <Assign sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="Assign_2">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[fullOutputFilePathName]</OutArgument>
                 </Assign.To>
@@ -228,25 +233,36 @@
                   <InArgument x:TypeArguments="x:String">[configOutputFilePath + "\jobs-" + Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".csv"]</InArgument>
                 </Assign.Value>
               </Assign>
-              <ui:WriteTextFile File="{x:Null}" Output="{x:Null}" DisplayName="Write Text File" FileName="[fullOutputFilePathName]" sap:VirtualizedContainerService.HintSize="416,176" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[jobsAsCsvText]" />
-              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SendEmailWorkflow" sap:VirtualizedContainerService.HintSize="416,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Workflows\SendEmailWorkflow.xaml">
-                <ui:InvokeWorkflowFile.Arguments>
-                  <InArgument x:TypeArguments="x:Int32" x:Key="inJobsCount">[jobsCount]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="inAttachmentFilePath">[fullOutputFilePathName]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="inRecipientEmail">[configRecipientEmail]</InArgument>
-                </ui:InvokeWorkflowFile.Arguments>
-              </ui:InvokeWorkflowFile>
+              <ui:WriteTextFile File="{x:Null}" Output="{x:Null}" DisplayName="Write Text File" FileName="[fullOutputFilePathName]" sap:VirtualizedContainerService.HintSize="486,176" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[jobsAsCsvText]" />
+              <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="486,330" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+                <ui:CommentOut.Body>
+                  <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,228" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SendEmailWorkflow" sap:VirtualizedContainerService.HintSize="416,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Workflows\SendEmailWorkflow.xaml">
+                      <ui:InvokeWorkflowFile.Arguments>
+                        <InArgument x:TypeArguments="x:Int32" x:Key="inJobsCount">[jobsCount]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="inAttachmentFilePath">[fullOutputFilePathName]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="inRecipientEmail">[configRecipientEmail]</InArgument>
+                      </ui:InvokeWorkflowFile.Arguments>
+                    </ui:InvokeWorkflowFile>
+                  </Sequence>
+                </ui:CommentOut.Body>
+              </ui:CommentOut>
             </Sequence>
           </Sequence>
         </If.Then>
         <If.Else>
-          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="484,169" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="554,169" sap2010:WorkflowViewState.IdRef="Sequence_4">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="450,109" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Inzane Bot: No jobs found.&quot;]" />
+            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="520,109" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Inzane Bot: No jobs found.&quot;]" />
           </Sequence>
         </If.Else>
       </If>
