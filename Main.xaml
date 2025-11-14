@@ -189,7 +189,7 @@
           <OutArgument x:TypeArguments="sd:DataTable" x:Key="outJobsTable">[jobsTable]</OutArgument>
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="CleanJobsTableWorkflow - Invoke Workflow File (CleanJobsTableWorkflow.xaml)" sap:VirtualizedContainerService.HintSize="556,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="CleanJobsTableWorkflow.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="CleanJobsTableWorkflow - Invoke Workflow File (CleanJobsTableWorkflow.xaml)" sap:VirtualizedContainerService.HintSize="556,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Workflows\CleanJobsTableWorkflow.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <OutArgument x:TypeArguments="sd:DataTable" x:Key="outCleanedJobsTable">[cleanedJobsTable]</OutArgument>
           <InArgument x:TypeArguments="sd:DataTable" x:Key="inJobsTable">[jobsTable]</InArgument>
