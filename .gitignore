@@ -1,3 +1,6 @@
+# Sensitive files
+config.json
+
 # ── UiPath Studio machine-/cache-specific ──────────────────────────────
 **/.local/**
 **/.settings/**
