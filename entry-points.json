@@ -7,8 +7,8 @@
       "type": "process"
     },
     {
-      "filePath": "SendEmailWorkflow.xaml",
-      "uniqueId": "f0a19301-45f0-422d-b60d-6818827d6f20",
+      "filePath": "Workflows\\SendEmailWorkflow.xaml",
+      "uniqueId": "0e1f21ba-86cc-4689-bddf-b4a9fbab89d6",
       "type": "process",
       "input": {
         "type": "object",

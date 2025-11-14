@@ -147,7 +147,7 @@
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="486,599" sap2010:WorkflowViewState.IdRef="TryCatch_1">
         <TryCatch.Try>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke ReadJsonConfigWorkflow " sap:VirtualizedContainerService.HintSize="450,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="ReadJsonConfigWorkflow.xaml">
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke ReadJsonConfigWorkflow " sap:VirtualizedContainerService.HintSize="450,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Workflows\ReadJsonConfigWorkflow.xaml">
             <ui:InvokeWorkflowFile.Arguments>
               <OutArgument x:TypeArguments="x:String" x:Key="outConfigRecipientEmail">[configRecipientEmail]</OutArgument>
               <OutArgument x:TypeArguments="x:String" x:Key="outConfigQueryLink">[configQueryLink]</OutArgument>
@@ -182,7 +182,7 @@
           </Sequence>
         </TryCatch.Finally>
       </TryCatch>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke WebscrapeJobsWorkflow" sap:VirtualizedContainerService.HintSize="486,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="WebscrapeJobsWorkflow.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke WebscrapeJobsWorkflow" sap:VirtualizedContainerService.HintSize="486,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Workflows\WebscrapeJobsWorkflow.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <InArgument x:TypeArguments="x:String" x:Key="inQueryLink">[configQueryLink]</InArgument>
           <OutArgument x:TypeArguments="sd:DataTable" x:Key="outJobsTable">[jobsTable]</OutArgument>
@@ -229,7 +229,7 @@
                 </Assign.Value>
               </Assign>
               <ui:WriteTextFile File="{x:Null}" Output="{x:Null}" DisplayName="Write Text File" FileName="[fullOutputFilePathName]" sap:VirtualizedContainerService.HintSize="416,176" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[jobsAsCsvText]" />
-              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SendEmailWorkflow" sap:VirtualizedContainerService.HintSize="416,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="SendEmailWorkflow.xaml">
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SendEmailWorkflow" sap:VirtualizedContainerService.HintSize="416,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Workflows\SendEmailWorkflow.xaml">
                 <ui:InvokeWorkflowFile.Arguments>
                   <InArgument x:TypeArguments="x:Int32" x:Key="inJobsCount">[jobsCount]</InArgument>
                   <InArgument x:TypeArguments="x:String" x:Key="inAttachmentFilePath">[fullOutputFilePathName]</InArgument>
