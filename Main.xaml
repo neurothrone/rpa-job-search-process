@@ -123,13 +123,13 @@
       <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="643,2317" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="643,2337" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="MainSequence" sap:VirtualizedContainerService.HintSize="520,2291" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence DisplayName="MainSequence" sap:VirtualizedContainerService.HintSize="520,2314" sap2010:WorkflowViewState.IdRef="Sequence_5">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="configOutputFilePath" />
         <Variable x:TypeArguments="x:String" Name="configQueryLink" />
@@ -167,7 +167,7 @@
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <TerminateWorkflow DisplayName="Terminate Workflow" sap:VirtualizedContainerService.HintSize="416,114" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_1" Reason="Stopping execution because config.json did not exist or could not be read." />
+                <TerminateWorkflow DisplayName="Terminate Workflow" sap:VirtualizedContainerService.HintSize="416,114" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_1" Reason="Inzane Bot: Stopping execution because file 'config.json' did not exist or could not be read." />
               </Sequence>
             </ActivityAction>
           </Catch>
@@ -202,7 +202,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </Assign>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[&quot;Jobs count: &quot; + jobsCount.ToString]" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Inzane Bot: Found &quot; + jobsCount.ToString + &quot; jobs.&quot;]" />
       <If Condition="[jobsCount &gt; 0 AndAlso  Not String.IsNullOrEmpty(jobsAsCsvText)]" sap:VirtualizedContainerService.HintSize="486,961" sap2010:WorkflowViewState.IdRef="If_1">
         <If.Then>
           <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484,662" sap2010:WorkflowViewState.IdRef="Sequence_3">
@@ -231,6 +231,7 @@
               <ui:WriteTextFile File="{x:Null}" Output="{x:Null}" DisplayName="Write Text File" FileName="[fullOutputFilePathName]" sap:VirtualizedContainerService.HintSize="416,176" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[jobsAsCsvText]" />
               <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SendEmailWorkflow" sap:VirtualizedContainerService.HintSize="416,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="SendEmailWorkflow.xaml">
                 <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:Int32" x:Key="inJobsCount">[jobsCount]</InArgument>
                   <InArgument x:TypeArguments="x:String" x:Key="inAttachmentFilePath">[fullOutputFilePathName]</InArgument>
                   <InArgument x:TypeArguments="x:String" x:Key="inRecipientEmail">[configRecipientEmail]</InArgument>
                 </ui:InvokeWorkflowFile.Arguments>
@@ -245,7 +246,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="450,109" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;No jobs found.&quot;]" />
+            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="450,109" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Inzane Bot: No jobs found.&quot;]" />
           </Sequence>
         </If.Else>
       </If>

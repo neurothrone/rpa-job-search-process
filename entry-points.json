@@ -13,31 +13,22 @@
       "input": {
         "type": "object",
         "properties": {
-          "UiPathEventConnector": {
-            "type": "string"
-          },
-          "UiPathEvent": {
-            "type": "string"
-          },
-          "UiPathEventObjectType": {
-            "type": "string"
-          },
-          "UiPathEventObjectId": {
-            "type": "string"
-          },
-          "UiPathAdditionalEventData": {
-            "type": "string"
-          },
           "inAttachmentFilePath": {
             "type": "string"
           },
           "inRecipientEmail": {
             "type": "string"
+          },
+          "inJobsCount": {
+            "type": "integer",
+            "minimum": -2147483648,
+            "maximum": 2147483647
           }
         },
         "required": [
           "inAttachmentFilePath",
-          "inRecipientEmail"
+          "inRecipientEmail",
+          "inJobsCount"
         ]
       }
     }
