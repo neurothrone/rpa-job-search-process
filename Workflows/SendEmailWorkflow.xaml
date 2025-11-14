@@ -228,23 +228,40 @@
       <AssemblyReference>System.Net.NetworkInformation</AssemblyReference>
       <AssemblyReference>System.Net.Ping</AssemblyReference>
       <AssemblyReference>System.Net.Sockets</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="643,1066" sap2010:WorkflowViewState.IdRef="Sequence_8">
+  <Sequence sap:VirtualizedContainerService.HintSize="643,1365" sap2010:WorkflowViewState.IdRef="Sequence_8">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="452,1043" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="452,1342" sap2010:WorkflowViewState.IdRef="TryCatch_3">
       <TryCatch.Try>
-        <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="450,619" sap2010:WorkflowViewState.IdRef="Sequence_10">
+        <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="450,918" sap2010:WorkflowViewState.IdRef="Sequence_10">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:String" Name="emailBodyText" />
+            <Variable x:TypeArguments="x:String" Name="emailBodyTemplateText" />
+          </Sequence.Variables>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <uga:SendEmailConnections ArgumentAttachmentPaths="{x:Null}" ArgumentAttachments="{x:Null}" AttachmentPaths="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" ReplyTo="{x:Null}" SingleAttachment="{x:Null}" TextBody="{x:Null}" AttachmentInputMode="UseExisting" Attachments="[New List(Of UiPath.Platform.ResourceHandling.IResource)() From {&#xA;                UiPath.Platform.ResourceHandling.LocalResource.FromPath(inAttachmentFilePath)&#xA;            }]" AuthScopesInvalid="False" Body="[$&quot;&#xD;&#xA;&lt;p&gt;&#xD;&#xA;    &lt;b&gt;Behold!&lt;/b&gt;&lt;br/&gt;&#xD;&#xA;    &lt;br/&gt;&#xD;&#xA;    Inzane Bot returns from the digital wastelands with {inJobsCount} job(s).&lt;br/&gt;&#xD;&#xA;    Some good, some questionable... but all technically 'jobs'.&lt;br/&gt;&#xD;&#xA;    &lt;br/&gt;&#xD;&#xA;    Use them wisely. Or recklessly. I'm not your manager.&lt;br/&gt;&#xD;&#xA;    &lt;br/&gt;&#xD;&#xA;    – Inzane Bot&#xD;&#xA;&lt;/p&gt;&quot;]" ConnectionId="475abfec-75a1-4379-95e5-47612e9f9ded" DisplayName="Send Email" sap:VirtualizedContainerService.HintSize="416,393" sap2010:WorkflowViewState.IdRef="SendEmailConnections_2" Importance="Normal" InputType="HTML" SaveAsDraft="False" Subject="Inzane Bot: I Found Jobs. You're Welcome" To="[New List(Of String) From { inRecipientEmail }]" UseConnectionService="True">
+          <ui:ReadTextFile File="{x:Null}" Content="[emailBodyTemplateText]" DisplayName="Read Text File" FileName="[Path.Combine(Environment.CurrentDirectory, &quot;email-body-template.html&quot;)]" sap:VirtualizedContainerService.HintSize="416,124" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
+          <Assign sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[emailBodyText]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[emailBodyTemplateText.Replace("{{JobCount}}", inJobsCount.ToString())]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <uga:SendEmailConnections ArgumentAttachmentPaths="{x:Null}" ArgumentAttachments="{x:Null}" AttachmentPaths="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" ReplyTo="{x:Null}" SingleAttachment="{x:Null}" TextBody="{x:Null}" AttachmentInputMode="UseExisting" Attachments="[New List(Of UiPath.Platform.ResourceHandling.IResource)() From {&#xA;                UiPath.Platform.ResourceHandling.LocalResource.FromPath(inAttachmentFilePath)&#xA;            }]" AuthScopesInvalid="False" Body="[emailBodyText]" ConnectionId="475abfec-75a1-4379-95e5-47612e9f9ded" DisplayName="Send Email" sap:VirtualizedContainerService.HintSize="416,393" sap2010:WorkflowViewState.IdRef="SendEmailConnections_2" Importance="Normal" InputType="HTML" SaveAsDraft="False" Subject="Inzane Bot: I Found Jobs. You're Welcome" To="[New List(Of String) From { inRecipientEmail }]" UseConnectionService="True">
             <uga:SendEmailConnections.AttachmentsBackup>
               <usau:BackupSlot x:TypeArguments="ugage:AttachmentInputMode" StoredValue="UseExisting">
                 <usau:BackupSlot.BackupValues>
