@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:sd2="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -38,6 +38,7 @@
       <x:String>System.ComponentModel</x:String>
       <x:String>System.Xml.Serialization</x:String>
       <x:String>UiPath.UIAutomationNext.Models.ExtractData</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -95,92 +96,67 @@
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
       <AssemblyReference>System.Private.Xml</AssemblyReference>
       <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="486,1010" sap2010:WorkflowViewState.IdRef="Sequence_1">
-    <Sequence.Variables>
-      <Variable x:TypeArguments="sd2:DataTable" Name="jobsDataTable" />
-    </Sequence.Variables>
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="643,1133" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence sap:VirtualizedContainerService.HintSize="486,987" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="MainSequence" sap:VirtualizedContainerService.HintSize="520,1110" sap2010:WorkflowViewState.IdRef="Sequence_5">
       <Sequence.Variables>
-        <Variable x:TypeArguments="x:String" Default="[&quot;C:\Users\zanen\Desktop\jobs-&quot; + Now.ToString(&quot;yyyyMMdd-HHmmss&quot;) + &quot;.xlsx&quot;]" Name="outputFilePath" />
+        <Variable x:TypeArguments="sd:DataTable" Name="jobsTable" />
+        <Variable x:TypeArguments="x:String" Name="jobsAsCsvText" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:BuildDataTable DataTable="[jobsDataTable]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="452,92" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xD;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xD;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xD;&#xA;      &lt;xs:complexType&gt;&#xD;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xD;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xD;&#xA;            &lt;xs:complexType&gt;&#xD;&#xA;              &lt;xs:sequence&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Job_x0020_Title&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Job_x0020_Role&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Company_x0020_-_x0020_City&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Job_x0020_Link&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Published&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;              &lt;/xs:sequence&gt;&#xD;&#xA;            &lt;/xs:complexType&gt;&#xD;&#xA;          &lt;/xs:element&gt;&#xD;&#xA;        &lt;/xs:choice&gt;&#xD;&#xA;      &lt;/xs:complexType&gt;&#xD;&#xA;    &lt;/xs:element&gt;&#xD;&#xA;  &lt;/xs:schema&gt;&#xD;&#xA;&lt;/NewDataSet&gt;" />
-      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Chrome New Tab" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="452,377" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="fc9dd29d-9bbb-4a6b-bc9c-09347a876b73" Version="V2">
-        <uix:NApplicationCard.Body>
-          <ActivityAction x:TypeArguments="x:Object">
-            <ActivityAction.Argument>
-              <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
-            </ActivityAction.Argument>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,174" sap2010:WorkflowViewState.IdRef="Sequence_3">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="WebscrapeJobs - Invoke Workflow File (WebscapeJobs.xaml)" sap:VirtualizedContainerService.HintSize="486,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="WebscrapeJobsWorkflow.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="x:String" x:Key="websiteLinkAndQuery">https://arbetsformedlingen.se/platsbanken/annonser?p=4:apaJ_2ja_LuF&amp;q=systemutvecklare%20cloud%20azure&amp;l=3:PVZL_BQT_XtL;3:CCiR_sXa_BVW</InArgument>
+          <OutArgument x:TypeArguments="sd:DataTable" x:Key="jobsTable">[jobsTable]</OutArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <ui:OutputDataTable DataTable="[jobsTable]" DisplayName="Output Data Table as Text" sap:VirtualizedContainerService.HintSize="486,113" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[jobsAsCsvText]" />
+      <If Condition="[String.IsNullOrEmpty(jobsAsCsvText)]" sap:VirtualizedContainerService.HintSize="486,737" sap2010:WorkflowViewState.IdRef="If_1">
+        <If.Then>
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484,169" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="450,109" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;No jobs found.&quot;]" />
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="484,438" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Sequence DisplayName="WriteJobsToFile" sap:VirtualizedContainerService.HintSize="450,378" sap2010:WorkflowViewState.IdRef="Sequence_2">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Default="[&quot;C:\Users\zanen\Desktop\jobs-&quot; + Now.ToString(&quot;yyyyMMdd-HHmmss&quot;) + &quot;.csv&quot;]" Name="outputFilePath" />
+              </Sequence.Variables>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <uix:NGoToUrl DisplayName="Go To URL - arbetsformedlingen.se" sap:VirtualizedContainerService.HintSize="416,114" sap2010:WorkflowViewState.IdRef="NGoToUrl_1" ScopeIdentifier="fc9dd29d-9bbb-4a6b-bc9c-09347a876b73" Url="https://arbetsformedlingen.se/platsbanken/annonser?p=4:apaJ_2ja_LuF&amp;q=systemutvecklare%20cloud%20azure&amp;l=3:PVZL_BQT_XtL;3:CCiR_sXa_BVW" Version="V5" />
+              <ui:WriteTextFile File="{x:Null}" Output="{x:Null}" DisplayName="Write Text File" FileName="[outputFilePath]" sap:VirtualizedContainerService.HintSize="416,176" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[jobsAsCsvText]" />
+              <ui:Placeholder Description="This placeholder activity will be replaced at build time and can only be used within an execution template." DisplayName="Send Email with file" sap:VirtualizedContainerService.HintSize="416,119" sap2010:WorkflowViewState.IdRef="Placeholder_1" />
             </Sequence>
-          </ActivityAction>
-        </uix:NApplicationCard.Body>
-        <uix:NApplicationCard.OCREngine>
-          <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
-            <ActivityFunc.Argument>
-              <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
-            </ActivityFunc.Argument>
-          </ActivityFunc>
-        </uix:NApplicationCard.OCREngine>
-        <uix:NApplicationCard.TargetApp>
-          <uix:TargetApp Area="628, 53, 1235, 1266" BrowserType="Edge" ContentHash="NSlbVjooBkKvwbvBdi4fTg" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAWJQAAFiUBSVIk8AAAASdJREFUWEftl9sNwjAQBK8ESqAUOoEOoAMogY4ohRIoAbQoJ1m2JyHJ8gUjWYq89q3j+HGJ+NOyi4hbRDwi4mksirmvzWrOnY7uIo8uh6LRJSI2dYOBbDMHxToVfTXLDZoiiWo4xpIBJHox9ZVXQwamN0/WDECx1Vfrq+HTwLk4t7XwIeiDQkVO49rSgEKHq2GbNqBgBn1QMIM+KJhBHxTMoA8KZtAHBTPoQ4JuMG25e3Wbza1PyAcFBUqtPELn1ifkg0J54Cj40vqEfFDQNa1ACqznpfUJ+bBgBn1QMIM+KJhBHxTMoA8KZtAnt89USraGTMm6A8ikVBnPtzgOHt2kVKlyjk6ZsXMmFKv85+gd0W9c+d5YmZxhnV75OVxF60sxuz8kv80LzI8Nz/1reB8AAAAASUVORK5CYII=" InformativeScreenshot="e1cb224dcf87786a7ce1dd9960d38a50.png" Reference="V1agBxDtjUWPM3X7UP2NGw/2fy9TQ4sZE6-_yEiX1qyRw" Selector="&lt;html app='msedge.exe' title='New tab' /&gt;" Url="edge://newtab/" Version="V2">
-            <uix:TargetApp.Arguments>
-              <InArgument x:TypeArguments="x:String" />
-            </uix:TargetApp.Arguments>
-            <uix:TargetApp.WorkingDirectory>
-              <InArgument x:TypeArguments="x:String" />
-            </uix:TargetApp.WorkingDirectory>
-          </uix:TargetApp>
-        </uix:NApplicationCard.TargetApp>
-      </uix:NApplicationCard>
-      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge Sökning - Platsbanken - Arbetsförmedling" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="452,435" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="DebuggerApi" ScopeGuid="ffc30dd4-cd69-4122-b9d2-b7708e0b8013" Version="V2">
-        <uix:NApplicationCard.Body>
-          <ActivityAction x:TypeArguments="x:Object">
-            <ActivityAction.Argument>
-              <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
-            </ActivityAction.Argument>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,241" sap2010:WorkflowViewState.IdRef="Sequence_5">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[jobsDataTable]" DisplayName="Extract Table Data 'Extract Table Data'" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column0' Name='jobTitle'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column1' Name='jobUrl'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;true&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column2' Name='companyCity'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column3' Name='jobRole'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column4' Name='published'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='pb-feature-search-result-card' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/row&gt;&lt;column exact='1' name='Column0' attr='fulltext' name2='Column1' attr2='href'&gt;&lt;webctrl tag='pb-feature-search-result-card' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='h3' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column2' attr='fulltext'&gt;&lt;webctrl tag='pb-feature-search-result-card' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='strong' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column3' attr='fulltext'&gt;&lt;webctrl tag='pb-feature-search-result-card' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column4' attr='fulltext'&gt;&lt;webctrl tag='pb-feature-search-result-card' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;/column&gt;&lt;/extract&gt;" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,181" sap2010:WorkflowViewState.IdRef="NExtractData_4" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="ffc30dd4-cd69-4122-b9d2-b7708e0b8013" Version="V5">
-                <uix:NExtractData.Target>
-                  <uix:TargetAnchorable BrowserURL="https://arbetsformedlingen.se/platsbanken/annonser?p=4:apaJ_2ja_LuF&amp;q=systemutvecklare%20cloud%20azure&amp;l=3:PVZL_BQT_XtL;3:CCiR_sXa_BVW" ContentHash="A4GaidSM9kSh4vw9b_tRnQ" DesignTimeRectangle="40, 706, 1140, 4215" FullSelectorArgument="&lt;webctrl class='result-container' parentid='tabpanel-0' tag='DIV' /&gt;" Guid="b75b02f2-2a78-4634-b5ad-3aaf3a280de4" InformativeScreenshot="fd1f9fc2bdf7ffc884b00bb525496ca0.png" Reference="V1agBxDtjUWPM3X7UP2NGw/P7INlW_xXEeQSB0aGXHdig" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Sökning - Platsbanken - Arbetsförmedlingen' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
-                </uix:NExtractData.Target>
-              </uix:NExtractData>
-            </Sequence>
-          </ActivityAction>
-        </uix:NApplicationCard.Body>
-        <uix:NApplicationCard.OCREngine>
-          <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
-            <ActivityFunc.Argument>
-              <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
-            </ActivityFunc.Argument>
-          </ActivityFunc>
-        </uix:NApplicationCard.OCREngine>
-        <uix:NApplicationCard.TargetApp>
-          <uix:TargetApp Area="96, 60, 1235, 1266" BrowserType="Edge" ContentHash="d3PSvhvdL0q6A40SA2I6OA" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAmZJREFUWEfFls9LVFEUx8eZMcEoCGqXKIGbMENaVLsoCWXej5lxpue8cNGUUGKpoTAoiEohJiMtyqJNPyjamNgqSDciEW36RfQD+l9OnHk8773v+96bUYfX4sMw33O+955759x7JxaL2fR/ASFqQIgaEKIGhKgBIZyFbxpNbeg0/Moks5ShY6csiscxr3ZACOf+3xRw55NO5wdzlGzC/OqAEI53cpmZLZ06L+bBEw4I4Qw+SdP4mkHzXzQowKV3JEsNDej1B4TaSCRtaj9rkXU3Q0t/sIiBcrrGIkDYOUfaLLr+NA1F9Nzqg1wEhN3BJ4FPhbeIE93VegIEpONCnorLJs1+0Kn8S6t8Fh+mK7o31yhllQKmN3VK7itAngAEwf5DBRp6YcKqZIaem5U818M7ceOZ6jlXzMHYVQtoPligyfcGTOgH53G+6+WekBtz7qMW0pAgOFx5gE3FR29sxf8Icr7s59Mhx9u6LJgjsIDWk5cU873vGp3O5bZXwZ/8nXU5j33uGO1n1DH0iSzME1hAfk5tpK4UNhvDupzHPjcWTxRo/rMocPilAX4HEGyaXNe3jeNvg4wOHHdzuRfk2O1V0YzemAAEW9laeVV+yLvFPjl29ZHoo4WvKfA6gFC/Aq49FjtQ/rmDAur1E5TeiRgfRa/XAYT6NCGflMUfYifH3gQtBIT6HMOWDkuJ9U1nYJ7AApi9XkSXF9WLKPiPCggOe7mKDxzurzSdG+f7IPhBAkGwm8eISTTa1DuapaXfTg6/kN6xayrAxfc5XjZ9n2OZo8f76eZrAwpUASFqQIgaEKIGhGj5ByIFp5V416jQAAAAAElFTkSuQmCC" InformativeScreenshot="95ffb7d4cba83fde49f33dfaf8c9be8a.jpg" Reference="V1agBxDtjUWPM3X7UP2NGw/OoNMWd9OMkmbW1iAdMdhXg" Selector="&lt;html app='msedge.exe' title='Sökning - Platsbanken - Arbetsförmedlingen' /&gt;" Url="https://arbetsformedlingen.se/platsbanken/annonser?p=4:apaJ_2ja_LuF&amp;q=systemutvecklare%20cloud%20azure&amp;l=3:PVZL_BQT_XtL;3:CCiR_sXa_BVW" Version="V2" />
-        </uix:NApplicationCard.TargetApp>
-      </uix:NApplicationCard>
+          </Sequence>
+        </If.Else>
+      </If>
     </Sequence>
   </Sequence>
 </Activity>
