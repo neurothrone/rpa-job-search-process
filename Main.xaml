@@ -225,7 +225,7 @@
                   <OutArgument x:TypeArguments="x:String">[fullOutputFilePathName]</OutArgument>
                 </Assign.To>
                 <Assign.Value>
-                  <InArgument x:TypeArguments="x:String">[configOutputFilePath + "\jobs-" + Now.ToString("yyyyMMdd-HHmmss") + ".csv"]</InArgument>
+                  <InArgument x:TypeArguments="x:String">[configOutputFilePath + "\jobs-" + Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".csv"]</InArgument>
                 </Assign.Value>
               </Assign>
               <ui:WriteTextFile File="{x:Null}" Output="{x:Null}" DisplayName="Write Text File" FileName="[fullOutputFilePathName]" sap:VirtualizedContainerService.HintSize="416,176" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[jobsAsCsvText]" />
