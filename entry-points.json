@@ -5,6 +5,41 @@
       "filePath": "Main.xaml",
       "uniqueId": "3cab8404-b1fa-434c-b0e9-6dbd4912dfe7",
       "type": "process"
+    },
+    {
+      "filePath": "SendEmailWorkflow.xaml",
+      "uniqueId": "f0a19301-45f0-422d-b60d-6818827d6f20",
+      "type": "process",
+      "input": {
+        "type": "object",
+        "properties": {
+          "UiPathEventConnector": {
+            "type": "string"
+          },
+          "UiPathEvent": {
+            "type": "string"
+          },
+          "UiPathEventObjectType": {
+            "type": "string"
+          },
+          "UiPathEventObjectId": {
+            "type": "string"
+          },
+          "UiPathAdditionalEventData": {
+            "type": "string"
+          },
+          "inAttachmentFilePath": {
+            "type": "string"
+          },
+          "inRecipientEmail": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "inAttachmentFilePath",
+          "inRecipientEmail"
+        ]
+      }
     }
   ]
 }

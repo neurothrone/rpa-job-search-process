@@ -51,6 +51,12 @@
       "uniqueId": "3cab8404-b1fa-434c-b0e9-6dbd4912dfe7",
       "input": [],
       "output": []
+    },
+    {
+      "filePath": "SendEmailWorkflow.xaml",
+      "uniqueId": "f0a19301-45f0-422d-b60d-6818827d6f20",
+      "input": [],
+      "output": []
     }
   ],
   "isTemplate": false,
